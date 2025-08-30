@@ -5,6 +5,7 @@ from utils.psql_connection_tools import get_engine
 
 #---------------------------------------------------
 # 1. Downloading latest streeteasy data of rental prices
+print("Downloading Asking Rent and Rental Index Data...")
 
 # Streeteasy's Rental Index, measuring changes in rent prices across all APT sizes
 df_rent_index = pd.read_csv("https://cdn-charts.streeteasy.com/rentals"
@@ -25,6 +26,7 @@ df_rent_3bdr = pd.read_csv("https://cdn-charts.streeteasy.com/rentals/"
 
 #---------------------------------------------------
 # 2. Cleaning up all datasets
+print("Cleaning Datasets...")
 
 # 2a. Cleaning Median Asking Rent DFs
 rent_all_clean = tidy_asking_rent(df_rent_all)
@@ -36,6 +38,7 @@ rent_index_clean = tidy_rent_index(df_rent_index)
 
 #---------------------------------------------------
 # 3. Merging Median Asking Rent Datasets
+print("Merging Datasets...")
 
 merged_table = pd.merge(rent_all_clean.rename(columns={"median_rent":"all_apts"}), 
                         rent_1bdr_clean.rename(columns={"median_rent":"1bdr_apts"}), 
