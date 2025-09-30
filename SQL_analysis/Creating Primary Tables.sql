@@ -773,7 +773,6 @@ UPDATE median_income SET district_id = 59 WHERE "NAME" LIKE '%Mid-Island%'
     OR "NAME" LIKE '%Stapleton%'
     OR "NAME" LIKE '%Mariners Harbor%';
 
-
 --- updating data type for already-existing columns
 ALTER TABLE median_income
 ALTER COLUMN "income_all_HHs" TYPE integer USING "income_all_HHs"::integer;
@@ -986,17 +985,6 @@ UPDATE median_rent SET borough_id=1 WHERE borough='Manhattan';
 UPDATE median_rent SET borough_id=2 WHERE borough='Brooklyn';
 UPDATE median_rent SET borough_id=3 WHERE borough='Queens';
 UPDATE median_rent SET borough_id=4 WHERE borough='Bronx';
-
---- Modify Rent Index table to add borough_id data
-ALTER TABLE rent_index 
-    ADD COLUMN borough_id INT;
-ALTER TABLE rent_index
-    ADD CONSTRAINT borough_index
-    FOREIGN KEY (borough_id) REFERENCES boroughs(borough_id);
---- Adding borough_id context to existing rows
-UPDATE rent_index SET borough_id=1 WHERE area_name='Manhattan';
-UPDATE rent_index SET borough_id=2 WHERE area_name='Brooklyn';
-UPDATE rent_index SET borough_id=3 WHERE area_name='Queens';
 
 --- Additional Cleaning, we are only interested in neighborhood level data
 DELETE FROM median_rent WHERE area_type <> 'neighborhood';
