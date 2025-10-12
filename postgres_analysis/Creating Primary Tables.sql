@@ -25,9 +25,11 @@ CREATE TABLE districts (
 CREATE TABLE district_neighborhoods (
     district_id INT,
     neighborhood_id INT,
+    borough_id INT,
     PRIMARY KEY (district_id, neighborhood_id),
     FOREIGN KEY (district_id) REFERENCES districts(district_id) ON DELETE CASCADE,
-    FOREIGN KEY (neighborhood_id) REFERENCES neighborhoods(neighborhood_id) ON DELETE CASCADE
+    FOREIGN KEY (neighborhood_id) REFERENCES neighborhoods(neighborhood_id) ON DELETE CASCADE,
+    FOREIGN KEY (borough_id) REFERENCES boroughs(borough_id) ON DELETE CASCADE
 );
 
 -- Adding borough table data
@@ -635,6 +637,12 @@ ALTER TABLE median_income
 ALTER TABLE median_income
     ADD CONSTRAINT district_income
     FOREIGN KEY (district_id) REFERENCES districts(district_id);
+--- Modify Median Income table to add borough_id data
+ALTER TABLE median_income 
+    ADD COLUMN borough_id INT;
+ALTER TABLE median_income
+    ADD CONSTRAINT borough_income
+    FOREIGN KEY (borough_id) REFERENCES boroughs(borough_id);
 --- Adding a column for official district names
 ALTER TABLE median_income
     ADD COLUMN district_name VARCHAR(75);
@@ -644,6 +652,13 @@ SET district_name = (
     FROM districts 
     WHERE districts.district_id = median_income.district_id
 );
+
+--- Adding borough_id context to existing rows
+UPDATE median_income SET borough_id = 1 WHERE "NAME" LIKE '%Manhattan%';
+UPDATE median_income SET borough_id = 2 WHERE "NAME" LIKE '%Brooklyn%';
+UPDATE median_income SET borough_id = 3 WHERE "NAME" LIKE '%Queens%';
+UPDATE median_income SET borough_id = 4 WHERE "NAME" LIKE '%Bronx%';
+UPDATE median_income SET borough_id = 5 WHERE "NAME" LIKE '%Staten Island%';
 
 --- Adding district_id context to existing rows
 --- Brooklyn

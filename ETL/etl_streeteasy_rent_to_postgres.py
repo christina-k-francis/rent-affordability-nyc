@@ -1,15 +1,11 @@
 import os
 import pandas as pd
-from utils.streeteasy_data_tools import tidy_asking_rent, tidy_rent_index
+from utils.streeteasy_data_tools import tidy_asking_rent 
 from utils.psql_connection_tools import get_engine
 
 #---------------------------------------------------
 # 1. Downloading latest streeteasy data of rental prices
 print("Downloading Asking Rent and Rental Index Data...")
-
-# Streeteasy's Rental Index, measuring changes in rent prices across all APT sizes
-df_rent_index = pd.read_csv("https://cdn-charts.streeteasy.com/rentals"
-                            "/All/rentalIndex_All.zip", compression='zip')
 
 # Median asking rent for All APT sizes
 df_rent_all = pd.read_csv("https://cdn-charts.streeteasy.com/rentals/"
@@ -32,9 +28,6 @@ print("Cleaning Datasets...")
 rent_all_clean = tidy_asking_rent(df_rent_all)
 rent_1bdr_clean = tidy_asking_rent(df_rent_1bdr)
 rent_3bdr_clean = tidy_asking_rent(df_rent_3bdr)
-
-# 2b. Cleaning Rent Index DF
-rent_index_clean = tidy_rent_index(df_rent_index)
 
 #---------------------------------------------------
 # 3. Merging Median Asking Rent Datasets
@@ -61,9 +54,5 @@ engine = get_engine('postgres',
 
 median_rent_table.to_sql('median_rent', con=engine, 
                    if_exists='replace', index=False)
-
-rent_index_clean.to_sql('rent_index', con=engine,
-                        if_exists='replace', index=False
-                        )
 
 print('Final tables uploaded to Postgres!')
