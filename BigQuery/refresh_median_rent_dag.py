@@ -4,9 +4,40 @@ and then runs the corresponding SQL file, thus refreshing all related analysis t
 """
 
 from airflow import DAG
-from airflow.providers.google.cloud.operators.bigquery import BigQueryCheckOperator
+from airflow.sensors.base import BaseSensorOperator
+from airflow.utils.decorators import poke_mode_only
 from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
 from datetime import datetime, timedelta
+from google.cloud import bigquery
+
+#  custom sensor to detect modifications to the staging_median_rent table
+class BigQueryTableUpdateSensor(BaseSensorOperator):
+    """Check if a BigQuery table was modified within the last N minutes"""
+    
+    def __init__(self, project_id, dataset_id, table_id, modified_within_minutes=60, **kwargs):
+        super().__init__(**kwargs)
+        self.project_id = project_id
+        self.dataset_id = dataset_id
+        self.table_id = table_id
+        self.modified_within_minutes = modified_within_minutes
+    
+    @poke_mode_only
+    def poke(self, context):
+        try:
+            client = bigquery.Client(project=self.project_id)
+            table = client.get_table(f"{self.project_id}.{self.dataset_id}.{self.table_id}")
+            
+            if table.modified_time is None:
+                return False
+            
+            # Convert to UTC naive datetime for comparison
+            modified_time = table.modified_time.replace(tzinfo=None)
+            time_since_modified = datetime.utcnow() - modified_time
+            
+            return time_since_modified <= timedelta(minutes=self.modified_within_minutes)
+        except Exception as e:
+            self.log.error(f"Error checking table update: {e}")
+            return False
 
 # Configuration
 PROJECT_ID = "rent-affordability"
@@ -32,19 +63,15 @@ with DAG(
 ) as dag:
 
     # Sensor: Check if the staging table has changed since last run
-    wait_for_rent_table = BigQueryCheckOperator(
-        task_id="wait_for_staging_income_update",
-        sql=f"""
-            SELECT TIMESTAMP_DIFF(CURRENT_TIMESTAMP(), TIMESTAMP_MILLIS(last_modified_time), MINUTE)
-            FROM `{PROJECT_ID}.{DATASET_ID}.__TABLES__`
-            WHERE table_id = '{STAGING_TABLE}'
-            AND TIMESTAMP_MILLIS(last_modified_time) > TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
-        """,
-        use_legacy_sql=False,
-        do_xcom_push=False,
-        retries=0,
-        retry_delay=timedelta(minutes=15),
-        fail_on_empty=False  # this allows DAG to continue even if no updated rows are found
+    wait_for_rent_update = BigQueryTableUpdateSensor(
+        task_id="wait_for_staging_rent_update",
+        project_id=PROJECT_ID,
+        dataset_id=DATASET_ID,
+        table_id=STAGING_TABLE,
+        modified_within_minutes=120,  # look for changes in past 2 hours
+        poke_interval=60,              # check metadata every 60 seconds
+        timeout=600,                   # give up after 10 minutes of checking
+        mode="poke",
     )
 
     # Task: Run the refresh SQL
@@ -59,4 +86,4 @@ with DAG(
         location="US",
     )
 
-    wait_for_rent_table >> refresh_rent
+    wait_for_rent_update >> refresh_rent
