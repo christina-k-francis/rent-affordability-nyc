@@ -1,14 +1,13 @@
---- Refresh script that calculates analysis tables that stem from the median_rent
+--- Refresh script that calculates analysis tables that stem from the staging_median_rent table
 
---- 1. Creating the official median_rent table from the staging_median_rent table recently uploaded
+--- 1. Creating the fact_median_rent table from the recently updated staging_median_rent table
 CREATE OR REPLACE TABLE nyc_analysis.fact_median_rent AS
 SELECT
     neighborhood_id,
     borough_id,
-    DATE(CONCAT(CAST(year AS STRING), '-', LPAD(CAST(month AS STRING), 2, '0'), '-01')) AS date,
     year,
     month,
-    area_name,
+    neighborhood,
     borough,
     area_type,
     CAST(all_apts AS NUMERIC) AS all_apartments,
@@ -234,7 +233,7 @@ FROM (
         AND UPPER(s.area_type) IN ('NEIGHBORHOOD', 'BOROUGH')
 )
 WHERE
-    -- Exclude records where we couldn't map to a neighborhood_id
+    -- Exclude records where we couldn't map to a neighborhood_id or borough_id
     neighborhood_id IS NOT NULL
     AND borough_id IS NOT NULL
 -- Remove duplicates: keep most recent record per neighborhood/year/month
