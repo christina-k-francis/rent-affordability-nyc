@@ -13,6 +13,9 @@ from google.cloud import bigquery
 class BigQueryTableUpdateSensor(BaseSensorOperator):
     """Check if a BigQuery table was modified within the last N minutes"""
     
+    template_fields = []
+    ui_color = '#e3f2fd'
+
     def __init__(self, project_id, dataset_id, table_id, modified_within_minutes=60, **kwargs):
         super().__init__(**kwargs)
         self.project_id = project_id
@@ -20,20 +23,33 @@ class BigQueryTableUpdateSensor(BaseSensorOperator):
         self.table_id = table_id
         self.modified_within_minutes = modified_within_minutes
     
-    @poke_mode_only
     def poke(self, context):
+        """Check if table was modified within N minutes"""
         try:
             client = bigquery.Client(project=self.project_id)
             table = client.get_table(f"{self.project_id}.{self.dataset_id}.{self.table_id}")
             
             if table.modified_time is None:
+                self.log.info(f"Table {self.table_id} has no modification time recorded")
                 return False
             
             # Convert to UTC naive datetime for comparison
             modified_time = table.modified_time.replace(tzinfo=None)
             time_since_modified = datetime.utcnow() - modified_time
+
+            self.log.info(
+                f"Table {self.table_id} was last modified {time_since_modified.total_seconds()} seconds ago"
+            )
             
-            return time_since_modified <= timedelta(minutes=self.modified_within_minutes)
+            was_modified = time_since_modified <= timedelta(minutes=self.modified_within_minutes)
+            
+            if was_modified:
+                self.log.info(f"Table {self.table_id} was modified within the last {self.modified_within_minutes} minutes")
+            else:
+                self.log.info(f"Table {self.table_id} was NOT modified within the last {self.modified_within_minutes} minutes")
+            
+            return was_modified
+            
         except Exception as e:
             self.log.error(f"Error checking table update: {e}")
             return False
@@ -55,7 +71,7 @@ with DAG(
     dag_id="refresh_median_income_dag",
     default_args=default_args,
     description="Run refresh SQL when staging_median_income table changes",
-    schedule_interval="*/2 * * * *",  # checks every 2 hours
+    schedule_interval="0 */2 * * *",  # checks every 2 hours
     start_date=datetime(2025, 1, 1),
     catchup=False,
     tags=["bigquery", "refresh", "dag", "income"],
@@ -85,4 +101,5 @@ with DAG(
         location="US",
     )
 
+    # defining the task dependency
     wait_for_income_update >> refresh_income

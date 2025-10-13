@@ -13,6 +13,9 @@ from google.cloud import bigquery
 class BigQueryTableUpdateSensor(BaseSensorOperator):
     """Check if a BigQuery table was modified within the last N minutes"""
     
+    template_fields = []
+    ui_color = '#e3f2fd'
+
     def __init__(self, project_id, dataset_id, table_id, modified_within_minutes=60, **kwargs):
         super().__init__(**kwargs)
         self.project_id = project_id
@@ -20,7 +23,6 @@ class BigQueryTableUpdateSensor(BaseSensorOperator):
         self.table_id = table_id
         self.modified_within_minutes = modified_within_minutes
     
-    @poke_mode_only
     def poke(self, context):
         try:
             client = bigquery.Client(project=self.project_id)
@@ -33,7 +35,19 @@ class BigQueryTableUpdateSensor(BaseSensorOperator):
             modified_time = table.modified_time.replace(tzinfo=None)
             time_since_modified = datetime.utcnow() - modified_time
             
-            return time_since_modified <= timedelta(minutes=self.modified_within_minutes)
+            self.log.info(
+                f"Table {self.table_id} was last modified {time_since_modified.total_seconds()} seconds ago"
+            )
+            
+            was_modified = time_since_modified <= timedelta(minutes=self.modified_within_minutes)
+            
+            if was_modified:
+                self.log.info(f"Table {self.table_id} was modified within the last {self.modified_within_minutes} minutes")
+            else:
+                self.log.info(f"Table {self.table_id} was NOT modified within the last {self.modified_within_minutes} minutes")
+            
+            return was_modified
+        
         except Exception as e:
             self.log.error(f"Error checking table update: {e}")
             return False
@@ -85,4 +99,5 @@ with DAG(
         location="US",
     )
 
+    # defining the task dependency
     wait_for_rent_update >> refresh_rent
