@@ -4,8 +4,7 @@ and then runs the corresponding SQL file, thus refreshing all related analysis t
 """
 
 from airflow import DAG
-from airflow.sensors.base import BaseSensorOperator
-from airflow.utils.decorators import poke_mode_only
+from airflow.sensors.base import BaseSensorOperator, poke_mode_only
 from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
 from datetime import datetime, timedelta
 from google.cloud import bigquery
