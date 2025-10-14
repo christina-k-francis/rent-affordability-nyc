@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas google-cloud-bigquery google-auth-oauthlib pyarrow
+          pip install pandas google-cloud-bigquery google-auth-oauthlib pyarrow pandas-gbq
       
       - name: Run Streeteast Rent ETL
         id: streeteasy_etl
