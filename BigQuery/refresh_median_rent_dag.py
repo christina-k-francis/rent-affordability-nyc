@@ -24,11 +24,13 @@ class BigQueryTableUpdateSensor(BaseSensorOperator):
         self.modified_within_minutes = modified_within_minutes
     
     def poke(self, context):
+        """Check if table was modified within N minutes"""
         try:
             client = bigquery.Client(project=self.project_id)
             table = client.get_table(f"{self.project_id}.{self.dataset_id}.{self.table_id}")
             
             if table.modified_time is None:
+                self.log.info(f"Table {self.table_id} has no modification time recorded")
                 return False
             
             # Convert to UTC naive datetime for comparison
@@ -69,7 +71,7 @@ with DAG(
     dag_id="refresh_median_rent_dag",
     default_args=default_args,
     description="Run refresh SQL when staging_median_rent table changes",
-    schedule_interval="*/15 * * * *",  # checks every 15 minutes
+    schedule_interval="0 */2 * * *",  # checks every 2 hours
     start_date=datetime(2025, 1, 1),
     catchup=False,
     tags=["bigquery", "refresh", "dag", "rent"],
