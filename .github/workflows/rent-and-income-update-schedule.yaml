@@ -30,15 +30,13 @@ jobs:
         id: streeteasy_etl
         run: |
           cd ETL
-          python etl_streeteasy_rent_to_bq.py 2>&1 | tee streeteasy_output.log
-          echo "streeteasy_log=$(cat streeteasy_output.log)" >> $GITHUB_OUTPUT
+          python etl_streeteasy_rent_to_bq.py
 
       - name: Run U.S. Census Income ETL
         id: census_etl
         run: |
           cd ETL
-          python etl_us_census_income_to_bq.py 2>&1 | tee census_output.log
-          echo "census_log=$(cat census_output.log)" >> $GITHUB_OUTPUT
+          python etl_us_census_income_to_bq.py
 
       - name: Query latest data availability
         id: data_check
