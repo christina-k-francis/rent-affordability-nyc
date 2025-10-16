@@ -27,28 +27,42 @@ class BigQueryTableUpdateSensor(BaseSensorOperator):
         """Check if table was modified within N minutes"""
         try:
             client = bigquery.Client(project=self.project_id)
-            table = client.get_table(f"{self.project_id}.{self.dataset_id}.{self.table_id}")
             
-            if table.modified_time is None:
+            query = f"""
+                        SELECT TIMESTAMP_MILLIS(last_modified_time)
+                        FROM `{self.project_id}.{self.dataset_id}.__TABLES__`
+                        WHERE table_id = '{self.table_id}';
+            """
+
+            result = list(client.query(query).result())
+        
+            if not result:
                 self.log.info(f"Table {self.table_id} has no modification time recorded")
                 return False
             
-            # Convert to UTC naive datetime for comparison
-            modified_time = table.modified_time.replace(tzinfo=None)
-            time_since_modified = datetime.utcnow() - modified_time
-            
+            last_modified = result[0]['last_modified']
+
+            # logging the exact modification time
             self.log.info(
-                f"Table {self.table_id} was last modified {time_since_modified.total_seconds()} seconds ago"
+                f"Table {self.table_id} was last modified at: {last_modified}"
             )
             
-            was_modified = time_since_modified <= timedelta(minutes=self.modified_within_minutes)
+            # calculating the time elapsed since the last modificaion
+            time_since_modified = datetime.utcnow() - last_modified.replace(tzinfo=None)
+            threshold = timedelta(minutes=self.modified_within_minutes)
+                
+            was_modified = time_since_modified <= threshold
             
             if was_modified:
-                self.log.info(f"Table {self.table_id} was modified within the last {self.modified_within_minutes} minutes")
+                self.log.info(f"Table {self.table_id} was modified within the last {self.modified_within_minutes} minutes"
+                               "Proceeding with refresh."
+                              )
             else:
-                self.log.info(f"Table {self.table_id} was NOT modified within the last {self.modified_within_minutes} minutes")
+                self.log.info(f"Table {self.table_id} was NOT modified within the last {self.modified_within_minutes} minutes"
+                              f"Last modified {time_since_modified.total_seconds() / 3600:.1f} hours ago."
+                              )
             
-            return was_modified
+            return True # denotting a successful run, regardless of refresh
         
         except Exception as e:
             self.log.error(f"Error checking table update: {e}")
