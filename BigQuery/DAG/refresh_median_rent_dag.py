@@ -54,11 +54,11 @@ class BigQueryTableUpdateSensor(BaseSensorOperator):
             was_modified = time_since_modified <= threshold
             
             if was_modified:
-                self.log.info(f"Table {self.table_id} was modified within the last {self.modified_within_minutes} minutes"
+                self.log.info(f"Table {self.table_id} was modified within the last {self.modified_within_minutes} minutes. "
                                "Proceeding with refresh."
                               )
             else:
-                self.log.info(f"Table {self.table_id} was NOT modified within the last {self.modified_within_minutes} minutes"
+                self.log.info(f"Table {self.table_id} was NOT modified within the last {self.modified_within_minutes} minutes. "
                               f"Last modified {time_since_modified.total_seconds() / 3600:.1f} hours ago."
                               )
             
