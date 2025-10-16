@@ -4,7 +4,7 @@ and then runs the corresponding SQL file, thus refreshing all related analysis t
 """
 
 from airflow import DAG
-from airflow.sensors.base import BaseSensorOperator, poke_mode_only
+from airflow.sensors.base import BaseSensorOperator
 from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
 from datetime import datetime, timedelta
 from google.cloud import bigquery
@@ -40,11 +40,11 @@ class BigQueryTableUpdateSensor(BaseSensorOperator):
                 self.log.info(f"Table {self.table_id} has no modification time recorded")
                 return False
             
-            last_modified = result[0]
+            last_modified = result[0][0]
 
             # logging the exact modification time
             self.log.info(
-                f"Table {self.table_id} was last modified at: {last_modified}"
+                f"Table {self.table_id} was last modified at: {last_modified.strftime("%d.%b %Y %H:%M:%S")}"
             )
             
             # calculating the time elapsed since the last modificaion
