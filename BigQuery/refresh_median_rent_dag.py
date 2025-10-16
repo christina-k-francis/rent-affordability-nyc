@@ -40,7 +40,7 @@ class BigQueryTableUpdateSensor(BaseSensorOperator):
                 self.log.info(f"Table {self.table_id} has no modification time recorded")
                 return False
             
-            last_modified = result[0]['last_modified']
+            last_modified = result[0]
 
             # logging the exact modification time
             self.log.info(
