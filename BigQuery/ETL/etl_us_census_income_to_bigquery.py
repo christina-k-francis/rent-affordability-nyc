@@ -5,10 +5,14 @@ the American Community Survey, cleans it, and then exports it as a data table to
 
 import os
 import json
+import logging
 import pandas as pd
 from google.cloud import bigquery
 from google.oauth2 import service_account
 from utils.us_census_data_tools import Import_ACS_Table
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 # --- Configuration ---
 PROJECT_ID = "rent-affordability"
@@ -27,8 +31,20 @@ print("Downloading Median Income Data from U.S. Census API...")
 
 dfs = []
 for table_code in ACS_Tables:
-    df = Import_ACS_Table(os.getenv('CENSUS_API'), 36, table_code)
-    dfs.append(df)
+    logger.info(f"Fetching table: {table_code}")
+    try:
+        df = Import_ACS_Table(os.getenv('CENSUS_API'), 36, table_code)
+        logger.info(f"Successfully fetched {table_code}: {len(df)} rows")
+        dfs.append(df)
+    except Exception as e:
+        logger.error(f"Failed to fetch {table_code}: {str(e)}", exc_info=True)
+        raise
+
+if not dfs:
+    logger.error("No DataFrames were successfully fetched!")
+    raise ValueError("All Census API calls failed")
+
+logger.info(f"Total DataFrames collected: {len(dfs)}")
 
 # --- 2. Merge Datasets ---
 merged = dfs[0]
