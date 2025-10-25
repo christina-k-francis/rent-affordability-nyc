@@ -146,92 +146,93 @@ INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) V
 INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (102, 'Gramercy Park', 1);
 INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (103, 'Greenwich Village', 1);
 INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (104, 'Hamilton Heights', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (105, 'Inwood', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (106, 'Little Italy', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (107, 'Lower East Side', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (108, 'Marble Hill', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (109, 'Midtown', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (110, 'Midtown East', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (111, 'Midtown South', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (112, 'Midtown West', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (113, 'Morningside Heights', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (114, 'Nolita', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (115, 'Roosevelt Island', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (116, 'Soho', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (117, 'Stuyvesant Town/PCV', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (118, 'Tribeca', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (119, 'Upper East Side', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (120, 'Upper West Side', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (121, 'Washington Heights', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (122, 'West Harlem', 1);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (123, 'West Village', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (105, "Hell''s Kitchen", 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (106, 'Inwood', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (107, 'Little Italy', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (108, 'Lower East Side', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (109, 'Marble Hill', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (110, 'Midtown', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (111, 'Midtown East', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (112, 'Midtown South', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (113, 'Midtown West', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (114, 'Morningside Heights', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (115, 'Nolita', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (116, 'Roosevelt Island', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (117, 'Soho', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (118, 'Stuyvesant Town/PCV', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (119, 'Tribeca', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (120, 'Upper East Side', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (121, 'Upper West Side', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (122, 'Washington Heights', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (123, 'West Harlem', 1);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (124, 'West Village', 1);
 -- Queens Neighborhoods (Borough ID: 3)
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (124, 'Astoria', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (125, 'Auburndale', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (126, 'Bayside', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (127, 'Bellerose', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (128, 'Briarwood', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (129, 'Brookville', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (130, 'Cambria Heights', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (131, 'Clearview', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (132, 'College Point', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (133, 'Corona', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (134, 'Douglaston', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (135, 'East Elmhurst', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (136, 'Elmhurst', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (137, 'Floral Park', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (138, 'Flushing', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (139, 'Forest Hills', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (140, 'Fresh Meadows', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (141, 'Glen Oaks', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (142, 'Glendale', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (143, 'Hillcrest', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (144, 'Hollis', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (145, 'Howard Beach', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (146, 'Jackson Heights', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (147, 'Jamaica', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (148, 'Jamaica Estates', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (149, 'Jamaica Hills', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (150, 'Kew Gardens', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (151, 'Kew Gardens Hills', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (152, 'Laurelton', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (153, 'Little Neck', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (154, 'Long Island City', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (155, 'Maspeth', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (156, 'Middle Village', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (157, 'New Hyde Park', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (158, 'North Corona', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (159, 'Oakland Gardens', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (160, 'Ozone Park', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (161, 'Pomonok', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (162, 'Queens Village', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (163, 'Rego Park', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (164, 'Richmond Hill', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (165, 'Ridgewood', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (166, 'Rockaway All', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (167, 'Rosedale', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (168, 'South Jamaica', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (169, 'South Ozone Park', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (170, 'South Richmond Hill', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (171, 'Springfield Gardens', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (172, 'St. Albans', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (173, 'Sunnyside', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (174, 'Utopia', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (175, 'Whitestone', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (176, 'Woodhaven', 3);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (177, 'Woodside', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (125, 'Astoria', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (126, 'Auburndale', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (127, 'Bayside', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (128, 'Bellerose', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (129, 'Briarwood', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (130, 'Brookville', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (131, 'Cambria Heights', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (132, 'Clearview', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (133, 'College Point', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (134, 'Corona', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (135, 'Douglaston', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (136, 'East Elmhurst', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (137, 'Elmhurst', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (138, 'Floral Park', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (139, 'Flushing', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (140, 'Forest Hills', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (141, 'Fresh Meadows', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (142, 'Glen Oaks', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (143, 'Glendale', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (144, 'Hillcrest', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (145, 'Hollis', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (146, 'Howard Beach', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (147, 'Jackson Heights', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (148, 'Jamaica', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (149, 'Jamaica Estates', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (150, 'Jamaica Hills', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (151, 'Kew Gardens', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (152, 'Kew Gardens Hills', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (153, 'Laurelton', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (154, 'Little Neck', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (155, 'Long Island City', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (156, 'Maspeth', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (157, 'Middle Village', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (158, 'New Hyde Park', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (159, 'North Corona', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (160, 'Oakland Gardens', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (161, 'Ozone Park', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (162, 'Pomonok', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (163, 'Queens Village', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (164, 'Rego Park', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (165, 'Richmond Hill', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (166, 'Ridgewood', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (167, 'Rockaway All', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (168, 'Rosedale', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (169, 'South Jamaica', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (170, 'South Ozone Park', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (171, 'South Richmond Hill', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (172, 'Springfield Gardens', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (173, 'St. Albans', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (174, 'Sunnyside', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (175, 'Utopia', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (176, 'Whitestone', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (177, 'Woodhaven', 3);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (178, 'Woodside', 3);
 -- Staten Island Neighborhoods (Borough ID: 5)
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (178, 'North Shore', 5);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (179, 'Port Richmond', 5);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (180, 'Stapleton', 5);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (181, 'Mariners Harbor', 5);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (182, 'Mid-Island', 5);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (183, 'New Springville', 5);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (184, 'South Beach', 5);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (185, 'South Shore', 5);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (186, 'Tottenville', 5);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (187, 'Great Kills', 5);
-INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (188, 'Annadale', 5);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (179, 'North Shore', 5);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (180, 'Port Richmond', 5);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (181, 'Stapleton', 5);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (182, 'Mariners Harbor', 5);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (183, 'Mid-Island', 5);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (184, 'New Springville', 5);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (185, 'South Beach', 5);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (186, 'South Shore', 5);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (187, 'Tottenville', 5);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (188, 'Great Kills', 5);
+INSERT INTO nyc_analysis.ref_neighborhoods (neighborhood_id, name, borough_id) VALUES (189, 'Annadale', 5);
 
 -- Adding NYC community district data to the district table
 -- Brooklyn Community Districts (Borough ID: 2)
@@ -404,38 +405,39 @@ INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_i
 
 -- District 21: Lower East Side & Chinatown
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (21, 107, 1),  -- Lower East Side
+    (21, 108, 1),  -- Lower East Side
     (21, 96, 1);   -- Chinatown
 
 -- District 22: Chelsea & Hell's Kitchen
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (22, 95, 1);   -- Chelsea
+    (22, 95, 1),   -- Chelsea
+    (22, 105, 1);   -- Hell's Kitchen
 
 -- District 23: Midtown, Midtown East & Flatiron
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (23, 109, 1),  -- Midtown
-    (23, 110, 1),  -- Midtown East
-    (23, 111, 1),  -- Midtown South
-    (23, 112, 1),  -- Midtown West
+    (23, 110, 1),  -- Midtown
+    (23, 111, 1),  -- Midtown East
+    (23, 112, 1),  -- Midtown South
+    (23, 113, 1),  -- Midtown West
     (23, 101, 1);  -- Flatiron
 
 -- District 24: Murray Hill, Gramercy & Stuyvesant Town
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
     (24, 102, 1),  -- Gramercy Park
-    (24, 117, 1);  -- Stuyvesant Town/PCV
+    (24, 118, 1);  -- Stuyvesant Town/PCV
 
 -- District 25: Upper West Side
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (25, 120, 1);  -- Upper West Side
+    (25, 121, 1);  -- Upper West Side
 
 -- District 26: Upper East Side & Roosevelt Island
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (26, 119, 1),  -- Upper East Side
-    (26, 115, 1);  -- Roosevelt Island
+    (26, 120, 1),  -- Upper East Side
+    (26, 116, 1);  -- Roosevelt Island
 
 -- District 27: Morningside Heights & Hamilton Heights
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (27, 113, 1),  -- Morningside Heights
+    (27, 114, 1),  -- Morningside Heights
     (27, 104, 1);  -- Hamilton Heights
 
 -- District 28: Central Harlem
@@ -448,95 +450,95 @@ INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_i
 
 -- District 30: Washington Heights, Inwood & Marble Hill
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (30, 121, 1),  -- Washington Heights
-    (30, 105, 1),  -- Inwood
-    (30, 108, 1);  -- Marble Hill
+    (30, 122, 1),  -- Washington Heights
+    (30, 106, 1),  -- Inwood
+    (30, 109, 1);  -- Marble Hill
 
 -- Queens Community Districts
 -- District 31: Astoria & Long Island City
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (31, 124, 3),  -- Astoria
-    (31, 154, 3);  -- Long Island City
+    (31, 125, 3),  -- Astoria
+    (31, 155, 3);  -- Long Island City
 
 -- District 32: Long Island City, Sunnyside & Woodside
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (32, 154, 3),  -- Long Island City
-    (32, 173, 3),  -- Sunnyside
-    (32, 177, 3);  -- Woodside
+    (32, 155, 3),  -- Long Island City
+    (32, 174, 3),  -- Sunnyside
+    (32, 178, 3);  -- Woodside
 
 -- District 33: Jackson Heights & North Corona
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (33, 146, 3),  -- Jackson Heights
-    (33, 158, 3);  -- North Corona
+    (33, 147, 3),  -- Jackson Heights
+    (33, 159, 3);  -- North Corona
 
 -- District 34: Elmhurst & South Corona
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (34, 136, 3),  -- Elmhurst
-    (34, 133, 3);  -- Corona
+    (34, 137, 3),  -- Elmhurst
+    (34, 134, 3);  -- Corona
 
 -- District 35: Ridgewood, Glendale, Maspeth, & Middle Village
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (35, 165, 3),  -- Ridgewood
-    (35, 142, 3),  -- Glendale
-    (35, 155, 3),  -- Maspeth
-    (35, 156, 3);  -- Middle Village
+    (35, 166, 3),  -- Ridgewood
+    (35, 143, 3),  -- Glendale
+    (35, 156, 3),  -- Maspeth
+    (35, 157, 3);  -- Middle Village
 
 -- District 36: Forest Hills & Rego Park
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (36, 139, 3),  -- Forest Hills
-    (36, 163, 3);  -- Rego Park
+    (36, 140, 3),  -- Forest Hills
+    (36, 164, 3);  -- Rego Park
 
 -- District 37: Flushing, Murray Hill & Whitestone
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (37, 138, 3),  -- Flushing
-    (37, 175, 3);  -- Whitestone
+    (37, 139, 3),  -- Flushing
+    (37, 176, 3);  -- Whitestone
 
 -- District 38: Fresh Meadows, Hillcrest & Briarwood
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (38, 140, 3),  -- Fresh Meadows
-    (38, 143, 3),  -- Hillcrest
-    (38, 128, 3);  -- Briarwood
+    (38, 141, 3),  -- Fresh Meadows
+    (38, 144, 3),  -- Hillcrest
+    (38, 129, 3);  -- Briarwood
 
 -- District 39: Kew Gardens, Richmond Hill & Woodhaven
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (39, 150, 3),  -- Kew Gardens
-    (39, 151, 3),  -- Kew Gardens Hills
-    (39, 164, 3),  -- Richmond Hill
-    (39, 170, 3),  -- South Richmond Hill
-    (39, 176, 3);  -- Woodhaven
+    (39, 151, 3),  -- Kew Gardens
+    (39, 152, 3),  -- Kew Gardens Hills
+    (39, 165, 3),  -- Richmond Hill
+    (39, 171, 3),  -- South Richmond Hill
+    (39, 177, 3);  -- Woodhaven
 
 -- District 40: Howard Beach & Ozone Park
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (40, 145, 3),  -- Howard Beach
-    (40, 169, 3),  -- South Ozone Park
-    (40, 160, 3);  -- Ozone Park
+    (40, 146, 3),  -- Howard Beach
+    (40, 170, 3),  -- South Ozone Park
+    (40, 161, 3);  -- Ozone Park
 
 -- District 41: Bayside, Douglaston, Auburndale, & Little Neck
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (41, 126, 3),  -- Bayside
-    (41, 134, 3),  -- Douglaston
-    (41, 125, 3),  -- Auburndale
-    (41, 153, 3);  -- Little Neck
+    (41, 127, 3),  -- Bayside
+    (41, 135, 3),  -- Douglaston
+    (41, 126, 3),  -- Auburndale
+    (41, 154, 3);  -- Little Neck
 
 -- District 42: Jamaica, Hollis & St. Albans
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (42, 147, 3),  -- Jamaica
-    (42, 148, 3),  -- Jamaica Estates
-    (42, 149, 3),  -- Jamaica Hills
-    (42, 168, 3),  -- South Jamaica
-    (42, 144, 3),  -- Hollis
-    (42, 172, 3);  -- St. Albans
+    (42, 148, 3),  -- Jamaica
+    (42, 149, 3),  -- Jamaica Estates
+    (42, 150, 3),  -- Jamaica Hills
+    (42, 169, 3),  -- South Jamaica
+    (42, 145, 3),  -- Hollis
+    (42, 173, 3);  -- St. Albans
 
 -- District 43: Queens Village, Cambria Heights, Bellerose, & Rosedale
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (43, 162, 3),  -- Queens Village
-    (43, 130, 3),  -- Cambria Heights
-    (43, 127, 3),  -- Bellerose
-    (43, 167, 3);  -- Rosedale
+    (43, 163, 3),  -- Queens Village
+    (43, 131, 3),  -- Cambria Heights
+    (43, 128, 3),  -- Bellerose
+    (43, 168, 3);  -- Rosedale
 
 -- District 44: Far Rockaway, Breezy Point & Broad Channel
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES
-    (44, 166, 3);  -- Rockaway All
+    (44, 167, 3);  -- Rockaway All
 
 -- Bronx Community Districts
 -- District 45: Hunts Point
@@ -608,20 +610,20 @@ INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_i
 -- Staten Island Community Districts
 -- District 57: North Shore: New Springville & South Beach
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (57, 178, 5),  -- North Shore
-    (57, 183, 5),  -- New Springville
-    (57, 184, 5);  -- South Beach
+    (57, 179, 5),  -- North Shore
+    (57, 184, 5),  -- New Springville
+    (57, 185, 5);  -- South Beach
 
 -- District 58: South Shore: Tottenville, Great Kills, & Annadale
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (58, 185, 5),  -- South Shore
-    (58, 186, 5),  -- Tottenville
-    (58, 187, 5),  -- Great Kills
-    (58, 188, 5);  -- Annadale
+    (58, 186, 5),  -- South Shore
+    (58, 187, 5),  -- Tottenville
+    (58, 188, 5),  -- Great Kills
+    (58, 189, 5);  -- Annadale
 
 -- District 59: Mid-Island: Port Richmond, Stapleton, & Mariners Harbor
 INSERT INTO nyc_analysis.ref_district_neighborhoods (district_id, neighborhood_id, borough_id) VALUES 
-    (59, 182, 5),  -- Mid-Island
-    (59, 179, 5),  -- Port Richmond
-    (59, 180, 5),  -- Stapleton
-    (59, 181, 5);  -- Mariners Harbor
+    (59, 183, 5),  -- Mid-Island
+    (59, 180, 5),  -- Port Richmond
+    (59, 181, 5),  -- Stapleton
+    (59, 182, 5);  -- Mariners Harbor
