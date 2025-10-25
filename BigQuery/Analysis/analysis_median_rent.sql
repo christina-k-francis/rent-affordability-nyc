@@ -3,20 +3,19 @@
 --- 1. Creating the fact_median_rent table from the recently updated staging_median_rent table
 CREATE OR REPLACE TABLE nyc_analysis.fact_median_rent AS
 SELECT
-    neighborhood_id,
-    borough_id,
-    year,
-    month,
     neighborhood,
     borough,
     area_type,
+    year,
+    month,    
     CAST(all_apts AS NUMERIC) AS all_apartments,
     CAST(COALESCE(`1bdr_apts`, 0) AS NUMERIC) AS one_bedroom,
     CAST(COALESCE(`3bdr_apts`, 0) AS NUMERIC) AS three_plus_bedroom,
-    loaded_at
+    neighborhood_id,
+    borough_id,
 FROM (
     SELECT
-        s.area_name,
+        s.area_name as neighborhood,
         s.borough,
         s.area_type,
         s.year,
@@ -24,7 +23,6 @@ FROM (
         s.all_apts,
         s.`1bdr_apts`,
         s.`3bdr_apts`,
-        s.loaded_at,
         
         -- Map borough name to borough_id
         CASE
@@ -102,81 +100,82 @@ FROM (
             WHEN s.area_name LIKE '%Gramercy Park%' THEN 102
             WHEN s.area_name LIKE '%Greenwich Village%' THEN 103
             WHEN s.area_name LIKE '%Hamilton Heights%' THEN 104
-            WHEN s.area_name LIKE '%Inwood%' THEN 105
-            WHEN s.area_name LIKE '%Little Italy%' THEN 106
-            WHEN s.area_name LIKE '%Lower East Side%' THEN 107
-            WHEN s.area_name LIKE '%Marble Hill%' THEN 108
-            WHEN s.area_name LIKE '%Midtown East%' THEN 110
-            WHEN s.area_name LIKE '%Midtown South%' THEN 111
-            WHEN s.area_name LIKE '%Midtown West%' THEN 112
-            WHEN s.area_name LIKE '%Morningside Heights%' THEN 113
-            WHEN s.area_name LIKE '%Nolita%' THEN 114
-            WHEN s.area_name LIKE '%Roosevelt Island%' THEN 115
-            WHEN s.area_name LIKE '%Soho%' THEN 116
-            WHEN s.area_name LIKE '%Stuyvesant Town%' THEN 117
-            WHEN s.area_name LIKE '%Tribeca%' THEN 118
-            WHEN s.area_name LIKE '%Upper East Side%' THEN 119
-            WHEN s.area_name LIKE '%Upper West Side%' THEN 120
-            WHEN s.area_name LIKE '%Washington Heights%' THEN 121
-            WHEN s.area_name LIKE '%West Harlem%' THEN 122
-            WHEN s.area_name LIKE '%West Village%' THEN 123
-            WHEN s.area_name LIKE '%Midtown%' AND s.area_name NOT LIKE '%Midtown East%' AND s.area_name NOT LIKE '%Midtown South%' AND s.area_name NOT LIKE '%Midtown West%' THEN 109
+            WHEN s.area_name LIKE "%Hell's Kitchen%" THEN 105
+            WHEN s.area_name LIKE '%Inwood%' THEN 106
+            WHEN s.area_name LIKE '%Little Italy%' THEN 107
+            WHEN s.area_name LIKE '%Lower East Side%' THEN 108
+            WHEN s.area_name LIKE '%Marble Hill%' THEN 109
+            WHEN s.area_name LIKE '%Midtown East%' THEN 111
+            WHEN s.area_name LIKE '%Midtown South%' THEN 112
+            WHEN s.area_name LIKE '%Midtown West%' THEN 113
+            WHEN s.area_name LIKE '%Morningside Heights%' THEN 114
+            WHEN s.area_name LIKE '%Nolita%' THEN 115
+            WHEN s.area_name LIKE '%Roosevelt Island%' THEN 116
+            WHEN s.area_name LIKE '%Soho%' THEN 117
+            WHEN s.area_name LIKE '%Stuyvesant Town%' THEN 118
+            WHEN s.area_name LIKE '%Tribeca%' THEN 119
+            WHEN s.area_name LIKE '%Upper East Side%' THEN 120
+            WHEN s.area_name LIKE '%Upper West Side%' THEN 121
+            WHEN s.area_name LIKE '%Washington Heights%' THEN 122
+            WHEN s.area_name LIKE '%West Harlem%' THEN 123
+            WHEN s.area_name LIKE '%West Village%' THEN 124
+            WHEN s.area_name LIKE '%Midtown%' AND s.area_name NOT LIKE '%Midtown East%' AND s.area_name NOT LIKE '%Midtown South%' AND s.area_name NOT LIKE '%Midtown West%' THEN 110
             
             -- Queens neighborhoods (124-177)
-            WHEN s.area_name LIKE '%Astoria%' THEN 124
-            WHEN s.area_name LIKE '%Auburndale%' THEN 125
-            WHEN s.area_name LIKE '%Bayside%' THEN 126
-            WHEN s.area_name LIKE '%Bellerose%' THEN 127
-            WHEN s.area_name LIKE '%Briarwood%' THEN 128
-            WHEN s.area_name LIKE '%Brookville%' THEN 129
-            WHEN s.area_name LIKE '%Cambria Heights%' THEN 130
-            WHEN s.area_name LIKE '%Clearview%' THEN 131
-            WHEN s.area_name LIKE '%College Point%' THEN 132
-            WHEN s.area_name LIKE '%Corona%' THEN 133
-            WHEN s.area_name LIKE '%Douglaston%' THEN 134
-            WHEN s.area_name LIKE '%East Elmhurst%' THEN 135
-            WHEN s.area_name LIKE '%Elmhurst%' THEN 136
-            WHEN s.area_name LIKE '%Floral Park%' THEN 137
-            WHEN s.area_name LIKE '%Flushing%' THEN 138
-            WHEN s.area_name LIKE '%Forest Hills%' THEN 139
-            WHEN s.area_name LIKE '%Fresh Meadows%' THEN 140
-            WHEN s.area_name LIKE '%Glen Oaks%' THEN 141
-            WHEN s.area_name LIKE '%Glendale%' THEN 142
-            WHEN s.area_name LIKE '%Hillcrest%' THEN 143
-            WHEN s.area_name LIKE '%Hollis%' THEN 144
-            WHEN s.area_name LIKE '%Howard Beach%' THEN 145
-            WHEN s.area_name LIKE '%Jackson Heights%' THEN 146
-            WHEN s.area_name LIKE '%Jamaica Estates%' THEN 148
-            WHEN s.area_name LIKE '%Jamaica Hills%' THEN 149
-            WHEN s.area_name LIKE '%Jamaica%' THEN 147
-            WHEN s.area_name LIKE '%Kew Gardens Hills%' THEN 151
-            WHEN s.area_name LIKE '%Kew Gardens%' THEN 150
-            WHEN s.area_name LIKE '%Laurelton%' THEN 152
-            WHEN s.area_name LIKE '%Little Neck%' THEN 153
-            WHEN s.area_name LIKE '%Long Island City%' THEN 154
-            WHEN s.area_name LIKE '%Maspeth%' THEN 155
-            WHEN s.area_name LIKE '%Middle Village%' THEN 156
-            WHEN s.area_name LIKE '%New Hyde Park%' THEN 157
-            WHEN s.area_name LIKE '%North Corona%' THEN 158
-            WHEN s.area_name LIKE '%Oakland Gardens%' THEN 159
-            WHEN s.area_name LIKE '%Ozone Park%' THEN 160
-            WHEN s.area_name LIKE '%Pomonok%' THEN 161
-            WHEN s.area_name LIKE '%Queens Village%' THEN 162
-            WHEN s.area_name LIKE '%Rego Park%' THEN 163
-            WHEN s.area_name LIKE '%Richmond Hill%' THEN 164
-            WHEN s.area_name LIKE '%Ridgewood%' THEN 165
-            WHEN s.area_name LIKE '%Rockaway%' THEN 166
-            WHEN s.area_name LIKE '%Rosedale%' THEN 167
-            WHEN s.area_name LIKE '%South Jamaica%' THEN 168
-            WHEN s.area_name LIKE '%South Ozone Park%' THEN 169
-            WHEN s.area_name LIKE '%South Richmond Hill%' THEN 170
-            WHEN s.area_name LIKE '%Springfield Gardens%' THEN 171
-            WHEN s.area_name LIKE '%St. Albans%' THEN 172
-            WHEN s.area_name LIKE '%Sunnyside%' THEN 173
-            WHEN s.area_name LIKE '%Utopia%' THEN 174
-            WHEN s.area_name LIKE '%Whitestone%' THEN 175
-            WHEN s.area_name LIKE '%Woodhaven%' THEN 176
-            WHEN s.area_name LIKE '%Woodside%' THEN 177
+            WHEN s.area_name LIKE '%Astoria%' THEN 125
+            WHEN s.area_name LIKE '%Auburndale%' THEN 126
+            WHEN s.area_name LIKE '%Bayside%' THEN 127
+            WHEN s.area_name LIKE '%Bellerose%' THEN 128
+            WHEN s.area_name LIKE '%Briarwood%' THEN 129
+            WHEN s.area_name LIKE '%Brookville%' THEN 130
+            WHEN s.area_name LIKE '%Cambria Heights%' THEN 131
+            WHEN s.area_name LIKE '%Clearview%' THEN 132
+            WHEN s.area_name LIKE '%College Point%' THEN 133
+            WHEN s.area_name LIKE '%Corona%' THEN 134
+            WHEN s.area_name LIKE '%Douglaston%' THEN 135
+            WHEN s.area_name LIKE '%East Elmhurst%' THEN 136
+            WHEN s.area_name LIKE '%Elmhurst%' THEN 137
+            WHEN s.area_name LIKE '%Floral Park%' THEN 138
+            WHEN s.area_name LIKE '%Flushing%' THEN 139
+            WHEN s.area_name LIKE '%Forest Hills%' THEN 140
+            WHEN s.area_name LIKE '%Fresh Meadows%' THEN 141
+            WHEN s.area_name LIKE '%Glen Oaks%' THEN 142
+            WHEN s.area_name LIKE '%Glendale%' THEN 143
+            WHEN s.area_name LIKE '%Hillcrest%' THEN 144
+            WHEN s.area_name LIKE '%Hollis%' THEN 145
+            WHEN s.area_name LIKE '%Howard Beach%' THEN 146
+            WHEN s.area_name LIKE '%Jackson Heights%' THEN 147
+            WHEN s.area_name LIKE '%Jamaica Estates%' THEN 149
+            WHEN s.area_name LIKE '%Jamaica Hills%' THEN 150
+            WHEN s.area_name LIKE '%Jamaica%' THEN 148
+            WHEN s.area_name LIKE '%Kew Gardens Hills%' THEN 152
+            WHEN s.area_name LIKE '%Kew Gardens%' THEN 151
+            WHEN s.area_name LIKE '%Laurelton%' THEN 153
+            WHEN s.area_name LIKE '%Little Neck%' THEN 154
+            WHEN s.area_name LIKE '%Long Island City%' THEN 155
+            WHEN s.area_name LIKE '%Maspeth%' THEN 156
+            WHEN s.area_name LIKE '%Middle Village%' THEN 157
+            WHEN s.area_name LIKE '%New Hyde Park%' THEN 158
+            WHEN s.area_name LIKE '%North Corona%' THEN 159
+            WHEN s.area_name LIKE '%Oakland Gardens%' THEN 160
+            WHEN s.area_name LIKE '%Ozone Park%' THEN 161
+            WHEN s.area_name LIKE '%Pomonok%' THEN 162
+            WHEN s.area_name LIKE '%Queens Village%' THEN 163
+            WHEN s.area_name LIKE '%Rego Park%' THEN 164
+            WHEN s.area_name LIKE '%Richmond Hill%' THEN 165
+            WHEN s.area_name LIKE '%Ridgewood%' THEN 166
+            WHEN s.area_name LIKE '%Rockaway%' THEN 167
+            WHEN s.area_name LIKE '%Rosedale%' THEN 168
+            WHEN s.area_name LIKE '%South Jamaica%' THEN 169
+            WHEN s.area_name LIKE '%South Ozone Park%' THEN 170
+            WHEN s.area_name LIKE '%South Richmond Hill%' THEN 171
+            WHEN s.area_name LIKE '%Springfield Gardens%' THEN 172
+            WHEN s.area_name LIKE '%St. Albans%' THEN 173
+            WHEN s.area_name LIKE '%Sunnyside%' THEN 174
+            WHEN s.area_name LIKE '%Utopia%' THEN 175
+            WHEN s.area_name LIKE '%Whitestone%' THEN 176
+            WHEN s.area_name LIKE '%Woodhaven%' THEN 177
+            WHEN s.area_name LIKE '%Woodside%' THEN 178
             
             -- Bronx neighborhoods (1-42)
             WHEN s.area_name LIKE '%Baychester%' THEN 1
@@ -239,7 +238,6 @@ WHERE
 -- Remove duplicates: keep most recent record per neighborhood/year/month
 QUALIFY ROW_NUMBER() OVER (
     PARTITION BY neighborhood_id, year, month 
-    ORDER BY loaded_at DESC
 ) = 1
 ORDER BY
     borough_id,
@@ -281,8 +279,9 @@ SELECT
         ELSE NULL
     END AS yoy_change_pct_3bdr,
     
-    -- Data quality metrics
+    -- Data quality metric
     months_of_data,
+    -- Reference IDs
     neighborhood_id,
     borough_id,
     
@@ -293,6 +292,8 @@ FROM (
         n.name AS neighborhood_name,
         b.name AS borough_name,
         mr.year,
+        mr.neighborhood_id,
+        b.borough_id,
         
         -- Current year averages
         AVG(mr.all_apartments) AS avg_monthly_rent_all,
@@ -317,8 +318,6 @@ FROM (
         
         -- Data quality metrics
         COUNT(mr.month) AS months_of_data,
-        mr.neighborhood_id,
-        b.borough_id
         
     FROM
         nyc_analysis.fact_median_rent mr
