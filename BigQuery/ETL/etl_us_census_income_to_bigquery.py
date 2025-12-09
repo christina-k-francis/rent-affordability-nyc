@@ -14,7 +14,7 @@ from utils.us_census_data_tools import Import_ACS_Table
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-# --- Configuration ---
+# Configuration
 PROJECT_ID = "rent-affordability"
 DATASET = "nyc_analysis"
 TABLE_ID = f"{PROJECT_ID}.{DATASET}.staging_median_income"
@@ -26,7 +26,7 @@ ACS_Tables = [
     'B19131_005E'   # Other families w/ children
 ]
 
-# --- 1. Download ACS Data ---
+# 1. Download ACS Data
 print("Downloading Median Income Data from U.S. Census API...")
 
 dfs = []
@@ -46,7 +46,7 @@ if not dfs:
 
 logger.info(f"Total DataFrames collected: {len(dfs)}")
 
-# --- 2. Merge Datasets ---
+# 2. Merge Datasets
 merged = dfs[0]
 for df in dfs[1:]:
     merged = pd.merge(
@@ -55,7 +55,7 @@ for df in dfs[1:]:
         how='outer'
     )
 
-# --- 3. Clean and rename columns ---
+# 3. Clean and rename columns
 merged.rename(columns={
     'B19013_001E': 'income_all_HHs',
     'B19202_001E': 'income_singles',
@@ -63,7 +63,7 @@ merged.rename(columns={
     'B19131_005E': 'income_other_kids'
 }, inplace=True)
 
-# --- 4. Convert datatypes ---
+# 4. Convert datatypes
 for col in ['income_all_HHs', 'income_singles', 'income_married_kids', 'income_other_kids']:
     merged[col] = pd.to_numeric(merged[col], errors='coerce').astype('Int64')
 
@@ -71,7 +71,7 @@ merged['year'] = merged['year'].astype(int)
 merged['state'] = merged['state'].astype(str)
 merged['public use microdata area'] = merged['public use microdata area'].astype(str)
 
-# --- 5. Upload to BigQuery ---
+# 5. Upload to BigQuery
 print("Uploading Median Income Table to BigQuery...")
 # load credentials
 service_account_info = json.loads(os.environ["GOOGLE_CREDENTIALS_JSON"])
@@ -85,7 +85,7 @@ job_config = bigquery.LoadJobConfig(
 job = client.load_table_from_dataframe(merged, TABLE_ID, job_config=job_config)
 job.result() # ensures the script waits for the job to complete
 
-# --- 5a. check if the upload was successful ---
+# 5a. check if the upload was successful ---
 if job.state == 'DONE':
     if job.error_result:
         print(f"Job completed with errors: {job.error_result}")
