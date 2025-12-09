@@ -175,7 +175,7 @@ test_connection = PythonOperator(
     dag=dag,
 )
 
-# 2. Refresh the rent analysis tables
+# 2. Refresh the rent analysis tables, and conduct database normalization again
 refresh_rent_analysis = BigQueryInsertJobOperator(
     task_id="refresh_rent_analysis_tables",
     configuration={

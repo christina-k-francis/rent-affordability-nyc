@@ -180,7 +180,7 @@ test_connection = PythonOperator(
     dag=dag,
 )
 
-# 2. Refresh the income analysis tables
+# 2. Refresh the income analysis tables and conduct database normalization again
 refresh_income_analysis = BigQueryInsertJobOperator(
     task_id="refresh_income_analysis_tables",
     configuration={
