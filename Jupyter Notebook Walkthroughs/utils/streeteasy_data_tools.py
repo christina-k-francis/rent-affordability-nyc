@@ -5,7 +5,7 @@ Rent Index data from the StreetEasy Data Dashboard
 
 import pandas as pd
 
-def tidy_asking_rent(original_df):
+def tidy_rent_data(original_df):
     # Initial Melt using pandas built-in FX
     df_melted = original_df.melt(id_vars=(original_df.columns[:3]))
     # splitting year-month into separate columns
