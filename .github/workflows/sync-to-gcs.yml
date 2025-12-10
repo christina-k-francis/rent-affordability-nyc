@@ -1,0 +1,56 @@
+name: Sync Files to Google Cloud Storage
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      # Only trigger when BigQuery folder contents change
+      - 'BigQuery/**'
+  
+  # Allow manual triggering from GitHub UI
+  workflow_dispatch:
+
+jobs:
+  sync-to-gcs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Authenticate Google Cloud Connection
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCS_SERVICE_ACCOUNT_KEY }}
+      
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: rent-affordability
+      
+      - name: Sync DAG files to GCS
+        run: |
+          gsutil -m rsync -r -d BigQuery/DAG/ gs://rent-affordability-bucket/AirFlow/DAG/
+          echo "DAG sync complete"
+      
+      - name: Sync ETL scripts to GCS
+        run: |
+          gsutil -m rsync -r -d BigQuery/ETL/ gs://rent-affordability-bucket/AirFlow/ETL/
+          echo "ETL sync complete"
+      
+      - name: Sync SQL files to GCS
+        run: |
+          gsutil -m rsync -r -d BigQuery/SQL/ gs://rent-affordability-bucket/AirFlow/SQL/
+          echo "SQL sync complete"
+      
+      - name: Verify sync and list files
+        run: |
+          echo "Contents of AirFlow/DAG/:"
+          gsutil ls gs://rent-affordability-bucket/AirFlow/DAG/
+          echo ""
+          echo "Contents of AirFlow/ETL/:"
+          gsutil ls gs://rent-affordability-bucket/AirFlow/ETL/
+          echo ""
+          echo "Contents of AirFlow/SQL/:"
+          gsutil ls gs://rent-affordability-bucket/AirFlow/SQL/
