@@ -31,26 +31,26 @@ jobs:
       
       - name: Sync DAG files to GCS
         run: |
-          gsutil -m rsync -r -d BigQuery/DAG/ gs://rent-affordability-bucket/AirFlow/DAG/
+          gsutil -m rsync -r -d BigQuery/DAG/ gs://rent-affordability-bucket/dags/
           echo "DAG sync complete"
       
       - name: Sync ETL scripts to GCS
         run: |
-          gsutil -m rsync -r -d BigQuery/ETL/ gs://rent-affordability-bucket/AirFlow/ETL/
+          gsutil -m rsync -r -d BigQuery/ETL/ gs://rent-affordability-bucket/etl/
           echo "ETL sync complete"
       
       - name: Sync SQL files to GCS
         run: |
-          gsutil -m rsync -r -d BigQuery/SQL/ gs://rent-affordability-bucket/AirFlow/SQL/
+          gsutil -m rsync -r -d BigQuery/SQL/ gs://rent-affordability-bucket/sql/
           echo "SQL sync complete"
       
       - name: Verify sync and list files
         run: |
-          echo "Contents of AirFlow/DAG/:"
-          gsutil ls gs://rent-affordability-bucket/AirFlow/DAG/
+          echo "Contents of /dags/:"
+          gsutil ls gs://rent-affordability-bucket/dags/
           echo ""
-          echo "Contents of AirFlow/ETL/:"
-          gsutil ls gs://rent-affordability-bucket/AirFlow/ETL/
+          echo "Contents of /etl/:"
+          gsutil ls gs://rent-affordability-bucket/etl/
           echo ""
-          echo "Contents of AirFlow/SQL/:"
-          gsutil ls gs://rent-affordability-bucket/AirFlow/SQL/
+          echo "Contents of /sql/:"
+          gsutil ls gs://rent-affordability-bucket/sql/
