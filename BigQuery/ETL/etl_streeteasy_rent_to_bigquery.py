@@ -54,7 +54,7 @@ merged = (
 # 4. convert datatypes
 for col in ["all_price", "1bdr_price", "3bdr_price",
             "all_count", "1bdr_count", "3bdr_count"]:
-    merged[col] = pd.to_numeric(merged[col], errors='coerce').astype('Int64')
+    merged[col] = pd.to_numeric(merged[col], errors='coerce').astype('float32')
 
 merged["year"] = merged["year"].astype(int)
 merged["month"] = merged["month"].astype(str)
