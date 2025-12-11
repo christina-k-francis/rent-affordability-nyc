@@ -36,21 +36,21 @@ jobs:
       
       - name: Sync ETL scripts to GCS
         run: |
-          gsutil -m rsync -r -d BigQuery/ETL/ gs://rent-affordability-bucket/etl/
+          gsutil -m rsync -r -d BigQuery/ETL/ gs://rent-affordability-bucket/data/etl/
           echo "ETL sync complete"
       
       - name: Sync SQL files to GCS
         run: |
-          gsutil -m rsync -r -d BigQuery/SQL/ gs://rent-affordability-bucket/sql/
+          gsutil -m rsync -r -d BigQuery/SQL/ gs://rent-affordability-bucket/data/sql/
           echo "SQL sync complete"
       
       - name: Verify sync and list files
         run: |
-          echo "Contents of /dags/:"
+          echo "Contents of dags/:"
           gsutil ls gs://rent-affordability-bucket/dags/
           echo ""
-          echo "Contents of /etl/:"
-          gsutil ls gs://rent-affordability-bucket/etl/
+          echo "Contents of data/etl/:"
+          gsutil ls gs://rent-affordability-bucket/data/etl/
           echo ""
-          echo "Contents of /sql/:"
-          gsutil ls gs://rent-affordability-bucket/sql/
+          echo "Contents of data/sql/:"
+          gsutil ls gs://rent-affordability-bucket/data/sql/
