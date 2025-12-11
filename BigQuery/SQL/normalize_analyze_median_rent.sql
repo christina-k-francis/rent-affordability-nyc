@@ -8,9 +8,9 @@ SELECT
     area_type,
     year,
     month,    
-    CAST(all_apts AS NUMERIC) AS all_apartments,
-    CAST(COALESCE(`1bdr_apts`, 0) AS NUMERIC) AS one_bedroom,
-    CAST(COALESCE(`3bdr_apts`, 0) AS NUMERIC) AS three_plus_bedroom,
+    CAST(all_price AS NUMERIC) AS all_apartments,
+    CAST(COALESCE(`1bdr_price`, 0) AS NUMERIC) AS one_bedroom,
+    CAST(COALESCE(`3bdr_price`, 0) AS NUMERIC) AS three_plus_bedroom,
     neighborhood_id,
     borough_id,
 FROM (
@@ -20,9 +20,9 @@ FROM (
         s.area_type,
         s.year,
         s.month,
-        s.all_apts,
-        s.`1bdr_apts`,
-        s.`3bdr_apts`,
+        s.all_price,
+        s.`1bdr_price`,
+        s.`3bdr_price`,
         
         -- Map borough name to borough_id
         CASE
@@ -227,7 +227,7 @@ FROM (
         nyc_analysis.staging_median_rent s
     WHERE
         -- Data quality: must have rent data
-        s.all_apts IS NOT NULL
+        s.all_price IS NOT NULL
         -- Filter to only neighborhood and borough level data
         AND UPPER(s.area_type) IN ('NEIGHBORHOOD', 'BOROUGH')
 )
