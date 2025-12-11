@@ -105,36 +105,41 @@ download_rent_data = PythonOperator(
 
 # 1a. Query for the latest rent data that is available
 def check_rent_data_availability(**context):
-    """Query BigQuery for latest rent data year"""
+    """Query BigQuery for latest rent data year and month"""
 
     creds = get_credentials()
     client = get_bigquery_client(creds['google_creds_json'])
     
     query = f"""
     SELECT 
-        MAX(year) as latest_rent_year,
         COUNT(*) as row_count,
         COUNT(DISTINCT year) as years_available
-    FROM `{PROJECT_ID}.{DATASET_ID}.staging_median_rent`
+    FROM `{PROJECT_ID}.{DATASET_ID}.staging_median_rent`;
+
+    SELECT
+            `month`,
+            `year`
+            FROM `{PROJECT_ID}.{DATASET_ID}.staging_median_rent`
+            ORDER BY year DESC, month DESC
+            LIMIT 1;
     """
-    
     result = client.query(query).result()
-    row = list(result)[0]
-    
-    latest_year = row['latest_rent_year']
-    row_count = row['row_count']
-    years_available = row['years_available']
-    
-    print(f"Latest Streeteasy rent Data: {latest_year}")
+    row1 = list(result)[0]
+    row_count = row1['row_count']
+    years_available = row1['years_available']
+    row2 = list(result)[1]
+    month, year = row2['month'], row2['year']
+
+    print(f"Latest Streeteasy rent date: {month}, {year}")
     print(f"Total rows in staging_median_rent: {row_count}")
     print(f"Years available: {years_available}")
     
     # Push to XCom for use in downstream tasks
-    context['task_instance'].xcom_push(key='latest_rent_year', value=latest_year)
+    context['task_instance'].xcom_push(key='latest_rent_year', value=year)
     context['task_instance'].xcom_push(key='rent_row_count', value=row_count)
     
     return {
-        "latest_year": latest_year,
+        "latest_date": f"{month:02d}-{year}",
         "row_count": row_count,
         "years_available": years_available
     }
