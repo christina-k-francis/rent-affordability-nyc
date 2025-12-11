@@ -38,7 +38,7 @@ def get_credentials():
     in the form of a dict with 'google_creds' and 'census_api' keys.
     """
     try:
-        google_creds_json = Variable.get("GOOGLE_CREDENTIALS_JSON")
+        google_creds_json = Variable.get("GOOGLE_CREDENTIALS_SECRET")
         census_api = Variable.get("CENSUS_API")
         
         if not google_creds_json:
