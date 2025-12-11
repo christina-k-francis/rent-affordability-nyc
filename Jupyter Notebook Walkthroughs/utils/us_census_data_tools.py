@@ -115,15 +115,15 @@ def Import_ACS_Table(API_KEY, state_fips, ACS_table_name):
 
 def calc_acs_inflation_ratio(cpi_df, inflation_impact=True):
     """
-    Description:
-    ACS deflates all income data (adjusts for inflation) to December CPI levels 
-    of the survey year. This fx creates factors to convert ACS-deflated income 
-    back to inflated/nominal values.
+    description:
+        ACS deflates all income data (adjusts for inflation) to December CPI levels 
+        of the survey year. This fx creates factors to convert ACS-deflated income 
+        back to inflated/nominal values.
+        
+    input:
+        cpi_df: pd DataFrame with YEAR indicies and monthly CPI columns (JAN, FEB, etc.)
     
-    Parameters:
-    cpi_df: pd DataFrame with YEAR indicies and monthly CPI columns (JAN, FEB, etc.)
-    
-    Returns:
+    output:
     DataFrame with Year, Annual_CPI_Average, 
     December_CPI, and Inflation_Ratio columns
     """
