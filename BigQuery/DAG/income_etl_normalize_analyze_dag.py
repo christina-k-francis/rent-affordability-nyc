@@ -21,8 +21,8 @@ from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobO
 # configuration
 PROJECT_ID = "rent-affordability"
 DATASET_ID = "nyc_analysis"
-ETL_SCRIPT_PATH = "/home/airflow/gcs/dags/ETL/etl_us_census_income_to_bigquery.py"
-SQL_ANALYSIS_PATH = "/home/airflow/gcs/dags/sql/analysis_median_income.sql"
+ETL_SCRIPT_PATH = "/home/airflow/gcs/etl/etl_us_census_income_to_bigquery.py"
+SQL_ANALYSIS_PATH = "/home/airflow/gcs/sql/normalize_analyze_median_income.sql"
 
 default_args = {
     "owner": "Christina",
@@ -68,7 +68,7 @@ dag = DAG(
     schedule_interval="0 2 1 * *",  # 1st of every month at 2 AM UTC
     start_date=datetime(2025, 1, 1),
     catchup=False,
-    tags=["etl", "income", "census", "analysis", "bigquery", "monthly"],
+    tags=["etl", "income", "census", "bigquery", "monthly"],
 )
 
 # 1. Run the Census Income ETL Script

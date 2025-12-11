@@ -21,8 +21,8 @@ from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobO
 # configuration
 PROJECT_ID = "rent-affordability"
 DATASET_ID = "nyc_analysis"
-ETL_SCRIPT_PATH = "/home/airflow/gcs/dags/ETL/etl_streeteasy_rent_to_bigquery.py"
-SQL_ANALYSIS_PATH = "/home/airflow/gcs/dags/sql/analysis_median_rent.sql"
+ETL_SCRIPT_PATH = "/home/airflow/gcs/etl/etl_streeteasy_rent_to_bigquery.py"
+SQL_ANALYSIS_PATH = "/home/airflow/gcs/sql/normalize_analyze_median_rent.sql"
 
 default_args = {
     "owner": "Christina",
