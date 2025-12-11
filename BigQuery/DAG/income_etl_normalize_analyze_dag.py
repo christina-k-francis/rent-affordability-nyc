@@ -39,7 +39,7 @@ def get_credentials():
     """
     try:
         google_creds_json = Variable.get("GOOGLE_CREDENTIALS_SECRET")
-        census_api = Variable.get("CENSUS_API")
+        census_api = Variable.get("CENSUS_API_SECRET")
         
         if not google_creds_json:
             raise ValueError("GOOGLE_CREDENTIALS_JSON not found in Airflow Variables")
