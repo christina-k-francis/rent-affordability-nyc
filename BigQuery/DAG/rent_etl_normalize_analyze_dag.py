@@ -131,6 +131,7 @@ def check_rent_data_availability(**context):
         ORDER BY year DESC, month DESC
         LIMIT 1;
     """
+    result = client.query(query).result()
     row = list(result)[0]
     month, year = row['month'], row['year']
 
