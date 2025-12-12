@@ -26,10 +26,10 @@ FROM (
             ELSE NULL
         END AS borough,
         s.year,
-        s.income_all_hhs,
-        s.income_singles,
-        s.income_married_kids,
-        s.income_other_kids,
+        s.all_hhs,
+        s.singles,
+        s.married_kids,
+        s.other_kids,
         
         -- Map borough name (extracted from district) to borough_id
         CASE
