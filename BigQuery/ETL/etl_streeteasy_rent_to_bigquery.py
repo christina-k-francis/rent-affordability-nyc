@@ -32,7 +32,7 @@ urls = {
 
 dfs = {name: pd.read_csv(url, compression='zip') for name, url in urls.items()}
 
-# 2. clean and rename Columns
+# 2. tidy rent datasets
 print("Tidying DataFrames...")
 cleaned = {name: tidy_asking_rent(df) for name, df in dfs.items()}
 
