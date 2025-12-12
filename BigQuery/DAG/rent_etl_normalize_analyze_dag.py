@@ -110,25 +110,29 @@ def check_rent_data_availability(**context):
     creds = get_credentials()
     client = get_bigquery_client(creds['google_creds_json'])
     
+    # checking for row count and total available years
     query = f"""
     SELECT 
         COUNT(*) as row_count,
         COUNT(DISTINCT year) as years_available
     FROM `{PROJECT_ID}.{DATASET_ID}.staging_median_rent`;
-
-    SELECT
-            `month`,
-            `year`
-            FROM `{PROJECT_ID}.{DATASET_ID}.staging_median_rent`
-            ORDER BY year DESC, month DESC
-            LIMIT 1;
     """
     result = client.query(query).result()
-    row1 = list(result)[0]
-    row_count = row1['row_count']
-    years_available = row1['years_available']
-    row2 = list(result)[1]
-    month, year = row2['month'], row2['year']
+    row = list(result)[0]
+    row_count = row['row_count']
+    years_available = row['years_available']
+
+    # checking for latest month-year date of data
+    query = f"""
+    SELECT
+        `month`,
+        `year`
+        FROM `{PROJECT_ID}.{DATASET_ID}.staging_median_rent`
+        ORDER BY year DESC, month DESC
+        LIMIT 1;
+    """
+    row = list(result)[0]
+    month, year = row['month'], row['year']
 
     print(f"Latest Streeteasy rent date: {month}, {year}")
     print(f"Total rows in staging_median_rent: {row_count}")
