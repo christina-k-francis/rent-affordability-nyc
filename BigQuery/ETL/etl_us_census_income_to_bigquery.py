@@ -71,7 +71,7 @@ for col in ['all_HHs', 'singles', 'married_kids', 'other_kids']:
 
 merged['year'] = merged['year'].astype(int)
 merged['state'] = merged['state'].astype(str)
-merged['public use microdata area'] = merged['public use microdata area'].astype(str)
+merged['PUMA'] = merged['PUMA'].astype(str)
 
 # 5. clean dataset, so it only contains pertinent data
 cols = list(merged.columns)
