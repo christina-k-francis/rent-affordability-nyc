@@ -55,23 +55,33 @@ for df in dfs[1:]:
         how='outer'
     )
 
-# 3. Clean and rename columns
+# 3. Rename columns
 merged.rename(columns={
-    'B19013_001E': 'income_all_HHs',
-    'B19202_001E': 'income_singles',
-    'B19131_002E': 'income_married_kids',
-    'B19131_005E': 'income_other_kids'
+    'B19013_001E': 'all_HHs',
+    'B19202_001E': 'singles',
+    'B19131_002E': 'married_kids',
+    'B19131_005E': 'other_kids',
+    "NAME": "district",
+    "public use microdata area": "PUMA"
 }, inplace=True)
 
 # 4. Convert datatypes
-for col in ['income_all_HHs', 'income_singles', 'income_married_kids', 'income_other_kids']:
+for col in ['all_HHs', 'singles', 'married_kids', 'other_kids']:
     merged[col] = pd.to_numeric(merged[col], errors='coerce').astype('Int64')
 
 merged['year'] = merged['year'].astype(int)
 merged['state'] = merged['state'].astype(str)
 merged['public use microdata area'] = merged['public use microdata area'].astype(str)
 
-# 5. Upload to BigQuery
+# 5. clean dataset, so it only contains pertinent data
+cols = list(merged.columns)
+# move income columns to right side of df
+cols.insert(5, cols[1])
+del cols[1:3]
+merged = merged[cols]
+
+
+# 6. Upload to BigQuery
 print("Uploading Median Income Table to BigQuery...")
 # load credentials
 service_account_info = json.loads(os.environ["GOOGLE_CREDENTIALS_JSON"])
