@@ -64,7 +64,7 @@ dag = DAG(
     schedule_interval="0 2 1 * *",  # 1st of every month at 2 AM UTC
     start_date=datetime(2025, 1, 1),
     catchup=False,
-    tags=["etl", "rent", "streeteasy", "analysis", "bigquery", "monthly"]
+    tags=["etl", "rent", "streeteasy", "bigquery", "monthly"]
 )
 
 # 1. Run the Streeteasy Rent ETL script
