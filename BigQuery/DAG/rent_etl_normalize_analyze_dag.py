@@ -144,7 +144,7 @@ def check_rent_data_availability(**context):
     context['task_instance'].xcom_push(key='rent_row_count', value=row_count)
     
     return {
-        "latest_date": f"{month:02d}-{year}",
+        "latest_date": f"{month}-{year}",
         "row_count": row_count,
         "years_available": years_available
     }
