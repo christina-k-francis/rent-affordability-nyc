@@ -42,7 +42,7 @@ jobs:
         run: |
             set -e
             bq query \
-                --project_id=rent_affordability \
+                --project_id=rent-affordability \
                 --use_legacy_sql=false \
                 < BigQuery/SQL/normalize_median_rent.sql
 
@@ -50,6 +50,6 @@ jobs:
         run: |
             set -e
             bq query \
-                --project_id=rent_affordability \
+                --project_id=rent-affordability \
                 --use_legacy_sql=false \
                 < BigQuery/SQL/calc_yoy_median_rent.sql
