@@ -22,11 +22,16 @@ jobs:
         run: |
           echo "$GCS_SERVICE_ACCOUNT_KEY" > ~/service-account-key.json
       
-        
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: rent-affordability
+
+      - name: Find your Github Workspace Path
+        run: env | grep RUNNER_WORKSPACE  
+
+      - name: Find all GitHub environment variables in use
+        run: env
       
       - name: Test Keyfile with gcloud
         run: |
