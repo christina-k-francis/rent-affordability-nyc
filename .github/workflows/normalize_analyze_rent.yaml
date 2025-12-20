@@ -17,9 +17,12 @@ jobs:
         uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GCS_SERVICE_ACCOUNT_KEY }}
+
+      - name: Configure Big Query Service Key
         run: |
           echo "$GCS_SERVICE_ACCOUNT_KEY" > ~/service-account-key.json
       
+        
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
