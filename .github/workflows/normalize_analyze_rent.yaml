@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  testing:
+  Post-ETL-SQL-Queries:
     runs-on: ubuntu-latest
     
     steps:
@@ -34,14 +34,22 @@ jobs:
         run: |
             set -e
             bq query \
-                --ProjectId=rent_affordability \
+                --project_id=rent_affordability \
                 --use_legacy_sql=false \
-                < BigQuery/bigquery_init_reference_tables.sql 
+                < BigQuery/SQL/bigquery_init_reference_tables.sql 
 
-      - name: Execute normalization and analysis Script
+      - name: Execute normalization script
         run: |
             set -e
             bq query \
                 --project_id=rent_affordability \
                 --use_legacy_sql=false \
-                < BigQuery/SQL/normalize_analyze_median_rent.sql
+                < BigQuery/SQL/normalize_median_rent.sql
+
+      - name: Execute YoY analysis script
+        run: |
+            set -e
+            bq query \
+                --project_id=rent_affordability \
+                --use_legacy_sql=false \
+                < BigQuery/SQL/calc_yoy_median_rent.sql
