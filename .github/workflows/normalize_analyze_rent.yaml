@@ -39,7 +39,7 @@ jobs:
           gcloud config set project rent-affordability
           bq --project_id=rent-affordability query --use_legacy_sql=false "SELECT 1"
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: /home/runner/service-account-key.json
+          GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/rent-affordability-nyc/service-account-key.json
 
   sync-to-gcs:
     runs-on: ubuntu-latest
