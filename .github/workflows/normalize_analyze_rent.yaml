@@ -34,7 +34,7 @@ jobs:
         run: |
             set -e
             bq query \
-                --project_id=rent_affordability \
+                --ProjectId=rent_affordability \
                 --use_legacy_sql=false \
                 < BigQuery/bigquery_init_reference_tables.sql 
 
