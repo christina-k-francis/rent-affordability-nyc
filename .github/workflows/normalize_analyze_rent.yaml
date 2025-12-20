@@ -1,4 +1,4 @@
-name: Update Rent Normalized Fact and YoY Change Percent Tables in BQ 
+name: Update and Normalize Rent Tables, and Calculate YoY Change Percent Tables in BQ 
 
 on:
   push:
@@ -20,52 +20,28 @@ jobs:
         uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GCS_SERVICE_ACCOUNT_KEY }}
-
-      - name: Configure Big Query Service Key
-        run: |
-          echo "$GCS_SERVICE_ACCOUNT_KEY" > ~/service-account-key.json
       
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: rent-affordability
+          install_components: bq
 
-      - name: Create Reference Tables for Foreign Key Connections
+      - name: Verify authentication
+        run: gcloud auth list
+
+      - name: Create reference tables for foreign key connections
         run: |
-            /home/runner/work/rent-affordability-nyc/BigQuery/bigquery_init_reference_tables.sql
+            set -e
+            bq query \
+                --project_id=rent_affordability \
+                --use_legacy_sql=false \
+                < BigQuery/bigquery_init_reference_tables.sql 
 
-      - name: Execute Normalization and Analysis Script
+      - name: Execute normalization and analysis Script
         run: |
-            /home/runner/work/rent-affordability-nyc/BigQuery/SQL/normalize_analyze_median_rent.sql
-
-
-      - name: Find your Github Workspace Path
-        run: env | grep RUNNER_WORKSPACE  
-
-      - name: Find all GitHub environment variables in use
-        run: env
-      
-      - name: Test Keyfile with gcloud
-        run: |
-          gcloud auth activate-service-account --key-file=/home/runner/work/rent-affordability-nyc/service-account-key.json
-          gcloud config set project rent-affordability
-          bq --project_id=rent-affordability query --use_legacy_sql=false "SELECT 1"
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/rent-affordability-nyc/service-account-key.json
-
-  sync-to-gcs:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      
-      - name: Authenticate Google Cloud Connection
-        uses: google-github-actions/auth@v1
-        with:
-          credentials_json: ${{ secrets.GCS_SERVICE_ACCOUNT_KEY }}
-      
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v1
-        with:
-          project_id: rent-affordability
+            set -e
+            bq query \
+                --project_id=rent_affordability \
+                --use_legacy_sql=false \
+                < BigQuery/SQL/normalize_analyze_median_rent.sql
