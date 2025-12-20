@@ -1,0 +1,51 @@
+name: Update Rent & Income YoY Change Percent, and Normalized Fact Tables
+
+on:
+  push:
+    branches:
+      - main
+  
+  # Allow manual triggering from GitHub UI
+  workflow_dispatch:
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Authenticate Google Cloud Connection
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCS_SERVICE_ACCOUNT_KEY }}
+        run: |
+          echo "$GCS_SERVICE_ACCOUNT_KEY" > ~/service-account-key.json
+      
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: rent-affordability
+      
+      - name: Test Keyfile with gcloud
+        run: |
+          gcloud auth activate-service-account --key-file=/home/runner/service-account-key.json
+          gcloud config set project rent-affordability
+          bq --project_id=rent-affordability query --use_legacy_sql=false "SELECT 1"
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: /home/runner/service-account-key.json
+
+  sync-to-gcs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Authenticate Google Cloud Connection
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCS_SERVICE_ACCOUNT_KEY }}
+      
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: rent-affordability
