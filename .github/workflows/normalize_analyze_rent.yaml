@@ -1,4 +1,4 @@
-name: Update Rent & Income YoY Change Percent, and Normalized Fact Tables
+name: Update Rent Normalized Fact and YoY Change Percent Tables in BQ 
 
 on:
   push:
@@ -13,6 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+            
       - name: Authenticate Google Cloud Connection
         uses: google-github-actions/auth@v1
         with:
@@ -27,6 +30,15 @@ jobs:
         with:
           project_id: rent-affordability
 
+      - name: Create Reference Tables for Foreign Key Connections
+        run: |
+            /home/runner/work/rent-affordability-nyc/BigQuery/bigquery_init_reference_tables.sql
+
+      - name: Execute Normalization and Analysis Script
+        run: |
+            /home/runner/work/rent-affordability-nyc/BigQuery/SQL/normalize_analyze_median_rent.sql
+
+
       - name: Find your Github Workspace Path
         run: env | grep RUNNER_WORKSPACE  
 
@@ -35,7 +47,7 @@ jobs:
       
       - name: Test Keyfile with gcloud
         run: |
-          gcloud auth activate-service-account --key-file=/home/runner/service-account-key.json
+          gcloud auth activate-service-account --key-file=/home/runner/work/rent-affordability-nyc/service-account-key.json
           gcloud config set project rent-affordability
           bq --project_id=rent-affordability query --use_legacy_sql=false "SELECT 1"
         env:
