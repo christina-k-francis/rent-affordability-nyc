@@ -1,4 +1,4 @@
-name: Update and Normalize Rent Tables, and Calculate YoY Change Percent Tables in BQ 
+name: Update and Normalize Rent/Income Tables, and Calculate Derived YoY Change Percentage Tables in BQ 
 
 on:
   push:
@@ -39,7 +39,7 @@ jobs:
                 < BigQuery/SQL/bigquery_init_reference_tables.sql 
             bq query --quiet
 
-      - name: Execute normalization script
+      - name: Execute rent normalization script
         run: |
             set -e
             bq query \
@@ -48,11 +48,29 @@ jobs:
                 < BigQuery/SQL/normalize_median_rent.sql
             bq query --quiet
 
-      - name: Execute YoY analysis script
+      - name: Execute rent YoY analysis script
         run: |
             set -e
             bq query \
                 --project_id=rent-affordability \
                 --use_legacy_sql=false \
                 < BigQuery/SQL/calc_yoy_median_rent.sql
+            bq query --quiet
+
+      - name: Execute income normalization script
+        run: |
+            set -e
+            bq query \
+                --project_id=rent-affordability \
+                --use_legacy_sql=false \
+                < BigQuery/SQL/normalize_median_income.sql
+            bq query --quiet
+
+      - name: Execute income YoY analysis script
+        run: |
+            set -e
+            bq query \
+                --project_id=rent-affordability \
+                --use_legacy_sql=false \
+                < BigQuery/SQL/calc_yoy_median_income.sql
             bq query --quiet
