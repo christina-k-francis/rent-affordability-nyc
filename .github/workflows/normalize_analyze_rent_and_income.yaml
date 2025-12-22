@@ -94,7 +94,6 @@ jobs:
                 --project_id=rent-affordability \
                 --use_legacy_sql=false \
                 < BigQuery/SQL/normalize_median_rent.sql
-            bq query --quiet
 
       - name: Execute rent YoY analysis script
         run: |
@@ -103,7 +102,6 @@ jobs:
                 --project_id=rent-affordability \
                 --use_legacy_sql=false \
                 < BigQuery/SQL/calc_yoy_median_rent.sql
-            bq query --quiet
 
       - name: Execute income normalization script
         run: |
@@ -112,7 +110,6 @@ jobs:
                 --project_id=rent-affordability \
                 --use_legacy_sql=false \
                 < BigQuery/SQL/normalize_median_income.sql
-            bq query --quiet
 
       - name: Execute income YoY analysis script
         run: |
@@ -121,4 +118,3 @@ jobs:
                 --project_id=rent-affordability \
                 --use_legacy_sql=false \
                 < BigQuery/SQL/calc_yoy_median_income.sql
-            bq query --quiet
