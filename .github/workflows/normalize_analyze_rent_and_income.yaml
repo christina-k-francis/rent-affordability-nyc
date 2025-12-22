@@ -36,7 +36,7 @@ jobs:
           set +e
 
           PROJECT="rent-affordability"
-          DATASET="reference"
+          DATASET="nyc_analysis"
 
           TABLES=(
             ref_boroughs
@@ -65,15 +65,18 @@ jobs:
           fi
             
       - name: Create reference tables with foreign key connections that DNE
+        if: steps.check_refs.outputs.none_missing == 'false'
+        env:
+          MISSING_TABLES: ${{ steps.check_refs.outputs.missing_tables }}
         run: |
             set -e
 
             PROJECT="rent-affordability"
 
-            for TABLE in ${{ steps.check_refs.outputs.missing_tables }}: do
+            for TABLE in ${MISSING_TABLES}; do
               SQL_FILE="BigQuery/SQL/primary_reference_tables/${TABLE}.sql"
 
-              if [ ! -f "$SQL_FILE" ]; then
+              if [ ! -f "${SQL_FILE}" ]; then
                 echo "SQL file not found at ${SQL_FILE}"
                 exit 1
               fi
@@ -81,7 +84,7 @@ jobs:
             bq query \
                 --project_id=${PROJECT} \
                 --use_legacy_sql=false \
-                < "$SQL_FILE" 
+                < "${SQL_FILE}" 
             bq query --quiet
 
       - name: Execute rent normalization script
