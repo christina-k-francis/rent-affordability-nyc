@@ -1,19 +1,19 @@
 --- BigQuery Database Development
 --- Primary Tables Schema for use with Median Rent & Income data
 
-CREATE TABLE nyc_analysis.ref_boroughs (
+CREATE OR REPLACE TABLE `nyc_analysis.ref_boroughs` (
     borough_id INT64,
     name STRING
 );
 
-CREATE TABLE nyc_analysis.ref_neighborhoods (
+CREATE OR REPLACE TABLE `nyc_analysis.ref_neighborhoods` (
     neighborhood_id INT64,
     name STRING,
     borough_id INT64
     -- FOREIGN KEY (borough_id) REFERENCES boroughs(borough_id)
 );
 
-CREATE TABLE nyc_analysis.ref_districts (
+CREATE OR REPLACE TABLE `nyc_analysis.ref_districts` (
     district_id INT64,
     name STRING,
     district_num INT64,
@@ -21,7 +21,7 @@ CREATE TABLE nyc_analysis.ref_districts (
     -- FOREIGN KEY (borough_id) REFERENCES boroughs(borough_id)
 );
 
-CREATE TABLE nyc_analysis.ref_district_neighborhoods (
+CREATE OR REPLACE TABLE `nyc_analysis.ref_district_neighborhoods` (
     district_id INT64,
     neighborhood_id INT64,
     borough_id INT64
