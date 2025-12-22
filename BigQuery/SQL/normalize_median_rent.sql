@@ -1,7 +1,7 @@
---- Refresh script that calculates analysis tables that stem from the staging_median_rent table
+--- Refresh script that calculates a normalized table that stems from the staging_median_rent table
 
---- 1. Creating the fact_median_rent table from the recently updated staging_median_rent table
-CREATE OR REPLACE TABLE nyc_analysis.fact_median_rent AS
+--- Creating the fact_median_rent table from the recently updated staging_median_rent table
+CREATE OR REPLACE TABLE `nyc_analysis.fact_median_rent` AS
 SELECT
     neighborhood,
     borough,
