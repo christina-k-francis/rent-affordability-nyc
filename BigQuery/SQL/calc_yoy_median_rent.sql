@@ -1,7 +1,7 @@
 --- Refresh script that calculates analysis tables that stem from the fact_median_rent table
 
 --- Calculating Year-over-Year Changes in asking rent prices
-CREATE OR REPLACE TABLE nyc_analysis.agg_yoy_rent_change AS
+CREATE OR REPLACE TABLE `nyc_analysis.agg_yoy_rent_change` AS
 SELECT
     neighborhood_name,
     borough_name,
