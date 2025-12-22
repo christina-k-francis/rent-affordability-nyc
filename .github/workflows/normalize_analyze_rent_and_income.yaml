@@ -30,13 +30,58 @@ jobs:
       - name: Verify authentication
         run: gcloud auth list
 
-      - name: Create reference tables for foreign key connections
+      - name: Check for missing reference/primary tables
+        id: check_refs
+        run: |
+          set +e
+
+          PROJECT="rent-affordability"
+          DATASET="reference"
+
+          TABLES=(
+            ref_boroughs
+            ref_neighborhoods
+            ref_districts
+            ref_district_neighborhoods
+          )
+
+          MISSING_TABLES=()
+
+          for TABLE in "${TABLES[@]}"; do
+            bq show --project_id="${PROJECT}" "${PROJECT}:${DATASET}.${TABLE}" > /dev/null 2>&1
+            if [ $? -ne 0 ]; then
+              echo "${TABLE} is missing"
+              MISSING_TABLES+=("${TABLE}")
+            else
+              echo "${TABLE} exists"
+            fi
+          done
+
+          if [ ${#MISSING_TABLES[@]} -eq 0 ]; then
+            echo "none_missing=true" >> $GITHUB_OUTPUT
+          else
+            echo "none_missing=false" >> $GITHUB_OUTPUT
+            echo "missing_tables=${MISSING_TABLES[*]}" >> $GITHUB_OUTPUT
+          fi
+            
+      - name: Create reference tables with foreign key connections that DNE
         run: |
             set -e
+
+            PROJECT="rent-affordability"
+
+            for TABLE in ${{ steps.check_refs.outputs.missing_tables }}: do
+              SQL_FILE="BigQuery/SQL/primary_reference_tables/${TABLE}.sql"
+
+              if [ ! -f "$SQL_FILE" ]; then
+                echo "SQL file not found at ${SQL_FILE}"
+                exit 1
+              fi
+
             bq query \
-                --project_id=rent-affordability \
+                --project_id=${PROJECT} \
                 --use_legacy_sql=false \
-                < BigQuery/SQL/bigquery_init_reference_tables.sql 
+                < "$SQL_FILE" 
             bq query --quiet
 
       - name: Execute rent normalization script
