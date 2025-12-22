@@ -69,23 +69,23 @@ jobs:
         env:
           MISSING_TABLES: ${{ steps.check_refs.outputs.missing_tables }}
         run: |
-            set -e
+          set -e
+          
+          PROJECT="rent-affordability"
 
-            PROJECT="rent-affordability"
+          for TABLE in ${MISSING_TABLES}; do
+            SQL_FILE="BigQuery/SQL/primary_reference_tables/${TABLE}.sql"
 
-            for TABLE in ${MISSING_TABLES}; do
-              SQL_FILE="BigQuery/SQL/primary_reference_tables/${TABLE}.sql"
-
-              if [ ! -f "${SQL_FILE}" ]; then
-                echo "SQL file not found at ${SQL_FILE}"
-                exit 1
-              fi
+            if [ ! -f "${SQL_FILE}" ]; then
+              echo "SQL file not found at ${SQL_FILE}"
+              exit 1
+            fi
 
             bq query \
-                --project_id=${PROJECT} \
-                --use_legacy_sql=false \
-                < "${SQL_FILE}" 
-            bq query --quiet
+              --project_id=${PROJECT} \
+              --use_legacy_sql=false \
+              < "${SQL_FILE}" 
+          done
 
       - name: Execute rent normalization script
         run: |
