@@ -243,4 +243,4 @@ ORDER BY
     borough_id,
     neighborhood_id,
     year,
-    month;
+    month

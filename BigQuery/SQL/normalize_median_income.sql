@@ -197,4 +197,4 @@ QUALIFY ROW_NUMBER() OVER (
 ORDER BY
     borough_id,
     district_id,
-    year;
+    year

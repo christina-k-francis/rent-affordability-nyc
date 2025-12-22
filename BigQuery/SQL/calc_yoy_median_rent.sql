@@ -94,4 +94,4 @@ FROM (
 ORDER BY
     borough_name,
     neighborhood_name,
-    year;
+    year
