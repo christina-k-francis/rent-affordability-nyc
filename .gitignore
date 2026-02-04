@@ -2,3 +2,5 @@ __pycache__/
 *checkpoint.sql
 *checkpoint/
 *architecture.txt
+jupyter_notebook_walkthroughs/Forecast_Analysis.py
+jupyter_notebook_walkthroughs/Unsupervised Learning - BK Gentrification Analysis.ipynb
