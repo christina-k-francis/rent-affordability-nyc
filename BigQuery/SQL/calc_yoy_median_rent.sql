@@ -55,7 +55,7 @@ FROM (
         AVG(mr.one_bedroom) AS avg_monthly_rent_1bdr,
         AVG(mr.three_plus_bedroom) AS avg_monthly_rent_3bdr,
         
-        -- Previous year averages (using LAG window function)
+        -- Previous year averages (using LAG window)
         LAG(AVG(mr.all_apartments)) OVER (
             PARTITION BY mr.neighborhood_id, b.borough_id
             ORDER BY mr.year
