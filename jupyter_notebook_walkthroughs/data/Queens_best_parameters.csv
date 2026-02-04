@@ -1,0 +1,3 @@
+borough,mape,rmse,mae,changepoint_prior_scale,seasonality_prior_scale,holidays_prior_scale,changepoint_range
+Queens_Affordable,0.08319661230810932,213.89944816668572,183.52246981206233,0.001,0.01,0.01,0.95
+Queens_Luxury,0.05910723423772804,238.7545386482218,186.71572009722777,0.001,0.01,0.01,0.95
