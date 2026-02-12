@@ -1,7 +1,7 @@
 --- Refresh script that calculates analysis tables that stem from the fact_median_rent table
 
 --- Calculating Year-over-Year Changes in Household Median Income
-CREATE OR REPLACE TABLE `nyc_analysis.agg_yoy_income_change` AS
+CREATE OR REPLACE TABLE `nyc_gold.income_yoy_changes` AS
 SELECT
     neighborhood_name,
     borough_name,
